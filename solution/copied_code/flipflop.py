@@ -1,6 +1,8 @@
+#! /usr/bin/env jython
+
 import sys
 
-sys.path.append("./ABAGAIL.jar")
+sys.path.append("./ABAGAIL/ABAGAIL.jar")
 
 from itertools import product
 from time import clock

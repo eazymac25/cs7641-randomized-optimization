@@ -1,3 +1,4 @@
+#!/usr/local/bin/jython
 import sys
 
 sys.path.append("./ABAGAIL.jar")
