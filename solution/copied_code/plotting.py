@@ -36,11 +36,11 @@ to_process = {
         'nn_curve': False,
         'multiple_trials': True
     },
-    'NN': {
-        'path': 'NN_OUTPUT',
-        'nn_curve': True,
-        'multiple_trials': False
-    }
+    # 'NN': {
+    #     'path': 'NN_OUTPUT',
+    #     'nn_curve': True,
+    #     'multiple_trials': False
+    # }
 }
 
 the_best = {}
@@ -116,7 +116,7 @@ def plot_data(title, data, column_prefixes=None, validate_only=False, nn_curve=F
 
 def read_data_file(file, nn_curve=False):
     logger.info("    - Processing {}".format(file))
-    df = pd.read_csv(file)
+    df = pd.read_csv(file, names=['iterations', 'fitness', 'time', 'fevals'])
     if 'iterations' not in df.columns:
         df = df.rename(columns={'iteration': 'iterations'})
 
@@ -589,7 +589,7 @@ def find_best_results(base_dir, problem_name, nn_curve=False, multiple_trials=Fa
                 params = '_'.join(params[0:-1])
                 similar_files = glob.glob('{}/{}_{}{}*_LOG.csv'.format(base_dir, problem_name, algo, params))
 
-                # TODO: This is super inefficient ... but... maybe fine? ¯\_(ツ)_/¯
+                # TODO: This is super inefficient ... but... maybe fine?
                 # Double-check it's still the best
                 fitness_data = df['fitness']
                 for i, f in enumerate(list(similar_files)):
