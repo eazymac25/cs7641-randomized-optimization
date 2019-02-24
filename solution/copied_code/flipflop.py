@@ -164,3 +164,4 @@ if __name__ == '__main__':
     for t in range(numTrials):
         for pop, mate, mutate in product([100], [50, 30, 10], [50, 30, 10]):
             run_ga(t, pop, mate, mutate)
+    print 'done'
