@@ -156,9 +156,9 @@ def run_ga(t, pop, mate, mutate):
 
 
 if __name__ == '__main__':
-    # for t in range(numTrials):
-    #     for samples, keep, m in product([100], [50], [0.1, 0.3, 0.5, 0.7, 0.9]):
-    #         run_mimic(t, samples, keep, m)
+    for t in range(numTrials):
+        for samples, keep, m in product([100], [50], [0.1, 0.3, 0.5, 0.7, 0.9]):
+            run_mimic(t, samples, keep, m)
     for t in range(numTrials):
         run_rhc(t)
     for t in range(numTrials):

@@ -64,7 +64,7 @@ def run_rhc(t):
         score = ef.value(rhc.getOptimal())
         ef.fevals -= 1
         st = '{},{},{},{}\n'.format(i, score, times[-1], fevals)
-        # print st
+        print st
         base.write_to_file(fname,st)
     return
 
@@ -89,7 +89,7 @@ def run_sa(t, CE):
         score = ef.value(sa.getOptimal())
         ef.fevals -= 1
         st = '{},{},{},{}\n'.format(i, score, times[-1], fevals)
-        # print st
+        print st
         base.write_to_file(fname,st)
     return
 
@@ -117,7 +117,7 @@ def run_ga(t, pop, mate, mutate):
         score = ef.value(ga.getOptimal())
         ef.fevals -= 1
         st = '{},{},{},{}\n'.format(i, score, times[-1], fevals)
-        # print st
+        print st
         base.write_to_file(fname,st)
     return
 
@@ -147,7 +147,7 @@ def run_mimic(t, samples, keep, m):
         score = ef.value(mimic.getOptimal())
         ef.fevals -= 1
         st = '{},{},{},{}\n'.format(i, score, times[-1], fevals)
-        # print st
+        print st
         base.write_to_file(fname,st)
     return
 
