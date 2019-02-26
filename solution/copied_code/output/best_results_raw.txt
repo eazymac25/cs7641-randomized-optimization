@@ -73,3 +73,11 @@
                   'output//TSP\\TSP_SA0.35_3_LOG.csv',
                   'output//TSP\\TSP_SA0.35_4_LOG.csv',
                   'output//TSP\\TSP_SA0.35_5_LOG.csv']}}
+---------- NN ----------
+{'Backprop': {'best': 1.0,
+              'files': ['output//NN_OUTPUT\\NN_Census_Backprop_LOG.csv']},
+ 'GA': {'best': 1.0,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_50_10_10_LOG.csv']},
+ 'RHC': {'best': 1.0, 'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 0.992989484226,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.95_LOG.csv']}}

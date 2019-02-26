@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append("./ABAGAIL.jar")
+sys.path.append("./ABAGAIL/ABAGAIL.jar")
 
 import base
 from java.lang import Math
@@ -53,11 +53,11 @@ def main(layers, training_iterations, test_data_file, train_data_file, validate_
 
 
 if __name__ == "__main__":
-    DS_NAME = 'Culled'
+    DS_NAME = 'census'
     TEST_DATA_FILE = 'data/{}_test.csv'.format(DS_NAME)
     TRAIN_DATA_FILE = 'data/{}_train.csv'.format(DS_NAME)
     VALIDATE_DATA_FILE = 'data/{}_validate.csv'.format(DS_NAME)
-    layers = [250, 250, 1]
-    training_iterations = 5001
+    layers = [100, 1]
+    training_iterations = 201
     main(layers, training_iterations, TEST_DATA_FILE,
          TRAIN_DATA_FILE, VALIDATE_DATA_FILE, DS_NAME)

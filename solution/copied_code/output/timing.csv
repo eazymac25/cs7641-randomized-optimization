@@ -1,0 +1,22 @@
+nn,rhc,([100, 1], 501, 'data/census_test.csv', 'data/census_train.csv', 'data/census_validate.csv', 'Census'),1.29500007629
+nn,ga,50,10,10,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,1.31399989128
+nn,ga,50,10,20,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,1.3259999752
+nn,sa,0.15,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,1.35899996758
+nn,ga,50,20,10,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,1.37200021744
+nn,ga,50,20,20,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,1.39100003242
+nn,sa,0.35,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,0.608000040054
+nn,sa,0.55,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,0.593999862671
+nn,sa,0.7,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,0.601999998093
+nn,backprop,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,0.570000171661
+nn,sa,0.95,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,0.582000017166
+nn,rhc,([100, 1], 501, 'data/census_test.csv', 'data/census_train.csv', 'data/census_validate.csv', 'Census'),50.5969998837
+nn,sa,0.15,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,51.1069998741
+nn,ga,50,10,20,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,99.7960000038
+nn,ga,50,10,10,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,111.328999996
+nn,ga,50,20,20,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,113.256999969
+nn,sa,0.35,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,81.2160000801
+nn,sa,0.55,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,80.8459999561
+nn,ga,50,20,10,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,137.141000032
+nn,sa,0.7,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,57.0209999084
+nn,backprop,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,46.1909999847
+nn,sa,0.95,[100, 1],501,data/census_test.csv,data/census_train.csv,data/census_validate.csv,Census,48.6559998989

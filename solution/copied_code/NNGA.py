@@ -1,7 +1,7 @@
 #!/usr/local/bin/jython
 import sys
 
-sys.path.append("./ABAGAIL.jar")
+sys.path.append("./ABAGAIL/ABAGAIL.jar")
 
 import base
 from java.lang import Math
@@ -22,7 +22,7 @@ GA NN training
 # Adapted from https://github.com/JonathanTay/CS-7641-assignment-2/blob/master/NN3.py
 import sys
 
-sys.path.append("./ABAGAIL.jar")
+# sys.path.append("./ABAGAIL.jar")
 
 
 # TODO: Move this to a common lib?
@@ -56,16 +56,17 @@ def main(P, mate, mutate, layers, training_iterations, test_data_file, train_dat
 
 
 if __name__ == "__main__":
-    DS_NAME = 'Vehicle'
+    DS_NAME = 'census'
     TEST_DATA_FILE = 'data/{}_test.csv'.format(DS_NAME)
     TRAIN_DATA_FILE = 'data/{}_train.csv'.format(DS_NAME)
     VALIDATE_DATA_FILE = 'data/{}_validate.csv'.format(DS_NAME)
     # [([32, 32, 32, 1], 5001, TEST_CULLED, TRAIN_CULLED, VALIDATE_CULLED, 'Culled'), ([18, 18, 4], 5001, TEST_VEHICLE, TRAIN_VEHICLE, VALIDATE_VEHICLE, 'Vehicle')]
-    layers = [18, 18, 1]
-    training_iterations = 5001
+    layers = [100, 1]
+    training_iterations = 201
     for p in [50]:
         for mate in [20, 10]:
             for mutate in [20, 10]:
                 args = (p, mate, mutate, layers, training_iterations,
                         TEST_DATA_FILE, TRAIN_DATA_FILE, VALIDATE_DATA_FILE, DS_NAME)
                 main(*args)
+    print 'done'

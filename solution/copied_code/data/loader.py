@@ -3,6 +3,7 @@ import json
 
 import pandas as pd
 import requests
+from sklearn.model_selection import train_test_split
 
 # We have to do some import magic for this to work on a Mac
 # https://github.com/MTG/sms-tools/issues/36
@@ -120,11 +121,6 @@ class CensusDataLoader(object):
         """
         for fxn in self.pipeline:
             self.df = fxn(self.df)
-        try:
-            with open(os.path.join(RUN_PATH, 'preprocessors/wine_full_column_list.txt'), 'w') as column_list:
-                column_list.write('\n'.join(self.df.columns))
-        except Exception as e:
-            print('Exception writing census columns to file during preprocessing with error %s' % e)
         return self.df
 
     @property
@@ -353,5 +349,36 @@ if __name__ == '__main__':
     # print(DATA_PATH)
     # download_census_data_and_save_as_csv()
 
+    feature_cols = ['age_num', 'education-num', 'marital-status_Single',
+                    'hours-per-week', 'capital-gain',
+                    'capital-loss', 'sex_Male', 'from_united_states']
+
+    target = 'income_num'
+
     census_df = pd.read_csv(os.path.join(DATA_PATH, CENSUS_CSV_FILE_NAME))
-    print len(census_df)
+    data_loader = CensusDataLoader(census_df)
+
+    loaded_data = data_loader.apply_pipeline()
+
+    # TODO: Consider stratification
+    x_train, x_test, y_train, y_test = train_test_split(
+        loaded_data[feature_cols],
+        loaded_data[target],
+        random_state=0,
+        test_size=0.2
+    )
+
+    x_train, x_validate, y_train, y_validate = train_test_split(
+        x_train,
+        y_train,
+        random_state=0,
+        test_size=0.2
+    )
+
+    test_set = pd.concat([x_test, y_test], axis=1)
+    train_set = pd.concat([x_train, y_train], axis=1)
+    validate_set = pd.concat([x_validate, y_validate], axis=1)
+
+    test_set.to_csv('./{}_test.csv'.format('census'), index=False, header=False)
+    train_set.to_csv('./{}_train.csv'.format('census'), index=False, header=False)
+    validate_set.to_csv('./{}_validate.csv'.format('census'), index=False, header=False)

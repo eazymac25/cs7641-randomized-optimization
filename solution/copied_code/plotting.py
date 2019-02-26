@@ -21,26 +21,26 @@ logger = logging.getLogger(__name__)
 input_path = 'output/'
 output_path = 'output/images/'
 to_process = {
-    'FLIPFLOP': {
-        'path': 'FLIPFLOP',
-        'nn_curve': False,
-        'multiple_trials': True
-    },
-    'TSP': {
-        'path': 'TSP',
-        'nn_curve': False,
-        'multiple_trials': True
-    },
-    'CONTPEAKS': {
-        'path': 'CONTPEAKS',
-        'nn_curve': False,
-        'multiple_trials': True
-    },
-    # 'NN': {
-    #     'path': 'NN_OUTPUT',
-    #     'nn_curve': True,
-    #     'multiple_trials': False
-    # }
+    # 'FLIPFLOP': {
+    #     'path': 'FLIPFLOP',
+    #     'nn_curve': False,
+    #     'multiple_trials': True
+    # },
+    # 'TSP': {
+    #     'path': 'TSP',
+    #     'nn_curve': False,
+    #     'multiple_trials': True
+    # },
+    # 'CONTPEAKS': {
+    #     'path': 'CONTPEAKS',
+    #     'nn_curve': False,
+    #     'multiple_trials': True
+    # },
+    'NN': {
+        'path': 'NN_OUTPUT',
+        'nn_curve': True,
+        'multiple_trials': False
+    }
 }
 
 the_best = {}
@@ -116,7 +116,7 @@ def plot_data(title, data, column_prefixes=None, validate_only=False, nn_curve=F
 
 def read_data_file(file, nn_curve=False):
     logger.info("    - Processing {}".format(file))
-    df = pd.read_csv(file, names=['iterations', 'fitness', 'time', 'fevals'])
+    df = pd.read_csv(file) #, names=['iterations', 'fitness', 'time', 'fevals'])
     if 'iterations' not in df.columns:
         df = df.rename(columns={'iteration': 'iterations'})
 
@@ -420,7 +420,10 @@ def plot_best_curves(problem_name, files, output_dir, nn_curve=False):
     if not os.path.exists('{}/{}'.format(output_dir, problem_name)):
         os.makedirs('{}/{}'.format(output_dir, problem_name))
 
-    output_file_name_regex = re.compile('{}_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
+    if nn_curve:
+        output_file_name_regex = re.compile(r'{}_Census_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
+    else:
+        output_file_name_regex = re.compile(r'{}_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
     prefixes = []
     for algo in files:
         file = files[algo][0]
@@ -472,7 +475,10 @@ def plot_best_curves(problem_name, files, output_dir, nn_curve=False):
 
 def read_and_plot_test_output(base_dir, output_dir, problem_name, multiple_trials=True, nn_curve=False):
     logger.info("Reading {} data".format(problem_name))
-    output_file_name_regex = re.compile('{}_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
+    if nn_curve:
+        output_file_name_regex = re.compile(r'{}_Census_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
+    else:
+        output_file_name_regex = re.compile(r'{}_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
     output_files = glob.glob('{}/{}_*_LOG.csv'.format(base_dir, problem_name))
     files = defaultdict(dict)
     for output_file in output_files:
@@ -549,7 +555,7 @@ def read_and_plot_test_output(base_dir, output_dir, problem_name, multiple_trial
                 files[algo][pop][mate][mutate][trial] = output_file
             else:
                 files[algo][pop][mate][mutate] = output_file
-
+    print files
     if 'MIMIC' in files:
         plot_mimic_data(problem_name, files['MIMIC'], output_dir, nn_curve=nn_curve),
     if 'GA' in files:
@@ -563,7 +569,10 @@ def read_and_plot_test_output(base_dir, output_dir, problem_name, multiple_trial
 
 
 def find_best_results(base_dir, problem_name, nn_curve=False, multiple_trials=False):
-    output_file_name_regex = re.compile('{}_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
+    if nn_curve:
+        output_file_name_regex = re.compile(r'{}_Census_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
+    else:
+        output_file_name_regex = re.compile(r'{}_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
     output_files = glob.glob('{}/{}_*_LOG.csv'.format(base_dir, problem_name))
     files = {}
     for output_file in output_files:
@@ -625,8 +634,11 @@ if __name__ == '__main__':
     with open(input_path + '/best_results.csv', 'w+') as f:
         f.write('problem,algorithm,params,best fitness,best iterations,best time,best fevals\n')
         for problem_name in sorted(the_best):
-            output_file_name_regex = re.compile('{}_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
             nn_curve = problem_name == 'NN'
+            if nn_curve:
+                output_file_name_regex = re.compile(r'{}_Census_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
+            else:
+                output_file_name_regex = re.compile(r'{}_([A-Za-z]+)(.*)_LOG\.csv'.format(problem_name))
             best_files = the_best[problem_name]
             for algo in best_files:
                 file = best_files[algo][0]
