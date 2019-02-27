@@ -55,7 +55,7 @@ rhc_args = [data for data in experiment_data]
 print "RHC {}".format(len(rhc_args))
 sa_args = [(CE, data[0], data[1], data[2], data[3], data[4], data[5]) for CE in [0.15, 0.35, 0.55, 0.70, 0.95] for data in experiment_data]
 print "SA {}".format(len(sa_args))
-ga_args = [(p, mate, mutate, data[0], data[1], data[2], data[3], data[4], data[5]) for p in [50] for mate in [20, 10] for mutate in [20, 10] for data in experiment_data]
+ga_args = [(p, mate, mutate, data[0], data[1], data[2], data[3], data[4], data[5]) for p in [6, 8, 10] for mate in [2] for mutate in [1, 2, 3] for data in experiment_data]
 print "GA {}".format(len(ga_args))
 backprop_args = [data for data in experiment_data]
 print "Backprop {}".format(len(backprop_args))

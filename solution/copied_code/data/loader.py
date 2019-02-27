@@ -372,7 +372,7 @@ if __name__ == '__main__':
         x_train,
         y_train,
         random_state=0,
-        test_size=0.2
+        test_size=0.5
     )
 
     test_set = pd.concat([x_test, y_test], axis=1)

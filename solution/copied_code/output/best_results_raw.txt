@@ -81,3 +81,11 @@
  'RHC': {'best': 1.0, 'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
  'SA': {'best': 0.992989484226,
         'files': ['output//NN_OUTPUT\\NN_Census_SA_0.95_LOG.csv']}}
+---------- NN ----------
+{'Backprop': {'best': 1.0,
+              'files': ['output//NN_OUTPUT\\NN_Census_Backprop_LOG.csv']},
+ 'GA': {'best': 1.0,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_10_2_1_LOG.csv']},
+ 'RHC': {'best': 1.0, 'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 1.0,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.15_LOG.csv']}}
