@@ -83,17 +83,17 @@ def plot_data(title, data, column_prefixes=None, validate_only=False, nn_curve=F
                 plt.plot(data.index, mean, '-', linewidth=1, markersize=1,
                          label=column_prefix)
             else:
-                train = data['{}_f1_trg'.format(column_prefix)]
-                test = data['{}_f1_tst'.format(column_prefix)]
-                val = data['{}_f1_val'.format(column_prefix)]
+                train = data['{}_acc_trg'.format(column_prefix)]
+                test = data['{}_acc_tst'.format(column_prefix)]
+                val = data['{}_acc_val'.format(column_prefix)]
                 if not validate_only:
                     plt.plot(data.index, train, '-', linewidth=1, markersize=1,
-                             label='Train {} {}'.format(column_prefix, y_label))
+                             label='Train {} {}'.format(column_prefix, 'Accuracy'))
                     plt.plot(data.index, val, '-', linewidth=1, markersize=1,
-                             label='CV {} {}'.format(column_prefix, y_label))
+                             label='CV {} {}'.format(column_prefix, 'Accuracy'))
                 else:
                     plt.plot(data.index, test, '-', linewidth=1, markersize=1,
-                             label='{} {}'.format(column_prefix, y_label))
+                             label='{} {}'.format(column_prefix, 'Accuracy'))
 
     else:
         if not nn_curve:
@@ -103,8 +103,8 @@ def plot_data(title, data, column_prefixes=None, validate_only=False, nn_curve=F
                              mean + std, alpha=0.2)
             plt.plot(data.index, mean, '-', linewidth=1, markersize=1, label=None)
         else:
-            train = data['f1_trg']
-            val = data['f1_val']
+            train = data['acc_trg']
+            val = data['acc_val']
             plt.plot(data.index, train, '-', linewidth=1, markersize=1,
                      label='Train {}'.format(y_label))
             plt.plot(data.index, val, '-', linewidth=1, markersize=1,
@@ -158,7 +158,7 @@ def plot_mimic_data(problem_name, mimic_files, output_dir, nn_curve=False):
     graph_ys = ['fitness', 'time', 'fevals'] if not nn_curve else []
     logger.info("Plotting MIMIC data")
 
-    y_label = 'F1 Score' if nn_curve else 'Fitness'
+    y_label = 'Accuracy' if nn_curve else 'Fitness'
 
     if not os.path.exists('{}/{}'.format(output_dir, problem_name)):
         os.makedirs('{}/{}'.format(output_dir, problem_name))
@@ -212,7 +212,7 @@ def plot_ga_data(problem_name, ga_files, output_dir, nn_curve=False):
     graph_ys = ['fitness', 'time', 'fevals'] if not nn_curve else []
     logger.info("Plotting GA data")
 
-    y_label = 'F1 Score' if nn_curve else 'Fitness'
+    y_label = 'Accuracy' if nn_curve else 'Fitness'
 
     if not os.path.exists('{}/{}'.format(output_dir, problem_name)):
         os.makedirs('{}/{}'.format(output_dir, problem_name))
@@ -274,7 +274,7 @@ def plot_sa_data(problem_name, sa_files, output_dir, nn_curve=False):
     graph_ys = ['fitness', 'time', 'fevals'] if not nn_curve else []
     logger.info("Plotting SA data")
 
-    y_label = 'F1 Score' if nn_curve else 'Fitness'
+    y_label = 'Accuracy' if nn_curve else 'Fitness'
 
     if not os.path.exists('{}/{}'.format(output_dir, problem_name)):
         os.makedirs('{}/{}'.format(output_dir, problem_name))
@@ -325,7 +325,7 @@ def plot_rhc_data(problem_name, rhc_files, output_dir, nn_curve=False):
     graph_ys = ['fitness', 'time', 'fevals'] if not nn_curve else []
     logger.info("Plotting RHC data")
 
-    y_label = 'F1 Score' if nn_curve else 'Fitness'
+    y_label = 'Accuracy' if nn_curve else 'Fitness'
 
     if not os.path.exists('{}/{}'.format(output_dir, problem_name)):
         os.makedirs('{}/{}'.format(output_dir, problem_name))
@@ -371,7 +371,7 @@ def plot_backprop_data(problem_name, backprop_files, output_dir, nn_curve=False)
     graph_ys = ['fitness', 'time', 'fevals'] if not nn_curve else []
     logger.info("Plotting Backprop data")
 
-    y_label = 'F1 Score' if nn_curve else 'Fitness'
+    y_label = 'Accuracy' if nn_curve else 'Fitness'
 
     if not os.path.exists('{}/{}'.format(output_dir, problem_name)):
         os.makedirs('{}/{}'.format(output_dir, problem_name))
@@ -415,7 +415,7 @@ def plot_best_curves(problem_name, files, output_dir, nn_curve=False):
     graph_ys = ['fitness', 'time', 'fevals'] if not nn_curve else []
     logger.info("Plotting best results for {}".format(problem_name))
 
-    y_label = 'F1 Score' if nn_curve else 'Fitness'
+    y_label = 'Accuracy' if nn_curve else 'Fitness'
 
     if not os.path.exists('{}/{}'.format(output_dir, problem_name)):
         os.makedirs('{}/{}'.format(output_dir, problem_name))
@@ -618,7 +618,22 @@ def find_best_results(base_dir, problem_name, nn_curve=False, multiple_trials=Fa
     return dict(list(map(lambda k: (k, files[k]['files']), files)))
 
 
+def append_nn_columns():
+
+    for file_name in os.listdir('./output/NN_OUTPUT'):
+        with open(os.path.join('./output/NN_OUTPUT', file_name), 'r') as current_file:
+            initial_file = current_file.readlines()
+            if initial_file[0].startswith('iteration'):
+                continue
+
+        with open(os.path.join('./output/NN_OUTPUT', file_name), 'w') as current_file:
+            current_file.write(
+                'iteration,MSE_trg,MSE_val,MSE_tst,acc_trg,acc_val,acc_tst,f1_trg,f1_val,f1_tst,elapsed\n')
+            current_file.writelines(initial_file)
+
+
 if __name__ == '__main__':
+    append_nn_columns()
     for problem_name in to_process:
         logger.info("Processing {}".format(problem_name))
         problem = to_process[problem_name]

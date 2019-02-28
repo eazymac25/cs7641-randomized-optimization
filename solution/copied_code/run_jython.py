@@ -37,25 +37,29 @@ def shutdown_and_await_termination(pool, timeout):
 
 pool = Executors.newWorkStealingPool()
 
-TEST_CULLED = 'data/{}_test.csv'.format('census')
-TRAIN_CULLED = 'data/{}_train.csv'.format('census')
-VALIDATE_CULLED = 'data/{}_validate.csv'.format('census')
-
-TEST_VEHICLE = 'data/{}_test.csv'.format('Vehicle')
-TRAIN_VEHICLE = 'data/{}_train.csv'.format('Vehicle')
-VALIDATE_VEHICLE = 'data/{}_validate.csv'.format('Vehicle')
+TEST_CENSUS = 'data/{}_test.csv'.format('census')
+TRAIN_CENSUS = 'data/{}_train.csv'.format('census')
+VALIDATE_CENSUS = 'data/{}_validate.csv'.format('census')
 
 experiment_data = [
     #([INPUT_LAYER, HIDDEN_LAYER1, ..., OUTPUT_LAYER], max iterations, test, train, validate, name)
     # OUTPUT should be 1 otherwise you get an index out of bounds error
-    ([100, 1], 501, TEST_CULLED, TRAIN_CULLED, VALIDATE_CULLED, 'Census'),
-    # ([100, 1], 1000, TEST_VEHICLE, TRAIN_VEHICLE, VALIDATE_VEHICLE, 'Census')
+    ([100, 1], 1001, TEST_CENSUS, TRAIN_CENSUS, VALIDATE_CENSUS, 'Census'),
     ]
 rhc_args = [data for data in experiment_data]
 print "RHC {}".format(len(rhc_args))
-sa_args = [(CE, data[0], data[1], data[2], data[3], data[4], data[5]) for CE in [0.15, 0.35, 0.55, 0.70, 0.95] for data in experiment_data]
+sa_args = [
+    (CE, data[0], data[1], data[2], data[3], data[4], data[5])
+    for CE in [0.15, 0.35, 0.55, 0.70, 0.95]
+    for data in experiment_data
+]
 print "SA {}".format(len(sa_args))
-ga_args = [(p, mate, mutate, data[0], data[1], data[2], data[3], data[4], data[5]) for p in [6, 8, 10] for mate in [2] for mutate in [1, 2, 3] for data in experiment_data]
+ga_args = [
+    (p, mate, mutate, data[0], data[1], data[2], data[3], data[4], data[5])
+    for p in [50, 100] for mate in [10, 20]
+    for mutate in [10]
+    for data in experiment_data
+]
 print "GA {}".format(len(ga_args))
 backprop_args = [data for data in experiment_data]
 print "Backprop {}".format(len(backprop_args))

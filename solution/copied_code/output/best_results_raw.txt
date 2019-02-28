@@ -89,3 +89,64 @@
  'RHC': {'best': 1.0, 'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
  'SA': {'best': 1.0,
         'files': ['output//NN_OUTPUT\\NN_Census_SA_0.15_LOG.csv']}}
+---------- NN ----------
+{'GA': {'best': 0.437519574068,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_6_2_2_LOG.csv']},
+ 'RHC': {'best': 0.388546255507,
+         'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 0.406633221851,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.7_LOG.csv']}}
+---------- NN ----------
+{'Backprop': {'best': 0.637026239067,
+              'files': ['output//NN_OUTPUT\\NN_Census_Backprop_LOG.csv']},
+ 'GA': {'best': 0.42191780821900005,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_10_8_4_LOG.csv']},
+ 'RHC': {'best': 0.38837516512500003,
+         'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 0.486631016043,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.35_LOG.csv']}}
+---------- NN ----------
+{'Backprop': {'best': 0.637026239067,
+              'files': ['output//NN_OUTPUT\\NN_Census_Backprop_LOG.csv']},
+ 'GA': {'best': 0.42191780821900005,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_10_8_4_LOG.csv']},
+ 'RHC': {'best': 0.38837516512500003,
+         'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 0.486631016043,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.35_LOG.csv']}}
+---------- NN ----------
+{'Backprop': {'best': 0.637026239067,
+              'files': ['output//NN_OUTPUT\\NN_Census_Backprop_LOG.csv']},
+ 'GA': {'best': 0.42191780821900005,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_10_8_4_LOG.csv']},
+ 'RHC': {'best': 0.38837516512500003,
+         'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 0.486631016043,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.35_LOG.csv']}}
+---------- NN ----------
+{'Backprop': {'best': 0.637026239067,
+              'files': ['output//NN_OUTPUT\\NN_Census_Backprop_LOG.csv']},
+ 'GA': {'best': 0.42191780821900005,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_10_8_4_LOG.csv']},
+ 'RHC': {'best': 0.38837516512500003,
+         'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 0.486631016043,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.35_LOG.csv']}}
+---------- NN ----------
+{'Backprop': {'best': 0.637026239067,
+              'files': ['output//NN_OUTPUT\\NN_Census_Backprop_LOG.csv']},
+ 'GA': {'best': 0.42191780821900005,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_10_8_4_LOG.csv']},
+ 'RHC': {'best': 0.38837516512500003,
+         'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 0.486631016043,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.35_LOG.csv']}}
+---------- NN ----------
+{'Backprop': {'best': 0.629422718808,
+              'files': ['output//NN_OUTPUT\\NN_Census_Backprop_LOG.csv']},
+ 'GA': {'best': 0.476090750436,
+        'files': ['output//NN_OUTPUT\\NN_Census_GA_100_10_10_LOG.csv']},
+ 'RHC': {'best': 0.44122137404600004,
+         'files': ['output//NN_OUTPUT\\NN_Census_RHC_LOG.csv']},
+ 'SA': {'best': 0.409398756047,
+        'files': ['output//NN_OUTPUT\\NN_Census_SA_0.55_LOG.csv']}}
