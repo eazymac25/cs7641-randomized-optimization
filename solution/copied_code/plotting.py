@@ -21,21 +21,21 @@ logger = logging.getLogger(__name__)
 input_path = 'output/'
 output_path = 'output/images/'
 to_process = {
-    # 'FLIPFLOP': {
-    #     'path': 'FLIPFLOP',
-    #     'nn_curve': False,
-    #     'multiple_trials': True
-    # },
-    # 'TSP': {
-    #     'path': 'TSP',
-    #     'nn_curve': False,
-    #     'multiple_trials': True
-    # },
-    # 'CONTPEAKS': {
-    #     'path': 'CONTPEAKS',
-    #     'nn_curve': False,
-    #     'multiple_trials': True
-    # },
+    'FLIPFLOP': {
+        'path': 'FLIPFLOP',
+        'nn_curve': False,
+        'multiple_trials': True
+    },
+    'TSP': {
+        'path': 'TSP',
+        'nn_curve': False,
+        'multiple_trials': True
+    },
+    'CONTPEAKS': {
+        'path': 'CONTPEAKS',
+        'nn_curve': False,
+        'multiple_trials': True
+    },
     'NN': {
         'path': 'NN_OUTPUT',
         'nn_curve': True,
@@ -116,7 +116,10 @@ def plot_data(title, data, column_prefixes=None, validate_only=False, nn_curve=F
 
 def read_data_file(file, nn_curve=False):
     logger.info("    - Processing {}".format(file))
-    df = pd.read_csv(file) #, names=['iterations', 'fitness', 'time', 'fevals'])
+    if nn_curve:
+        df = pd.read_csv(file)
+    else:
+        df = pd.read_csv(file, names=['iterations', 'fitness', 'time', 'fevals'])
     if 'iterations' not in df.columns:
         df = df.rename(columns={'iteration': 'iterations'})
 
